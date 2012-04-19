@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'vertex.rb'
 require 'utils.rb'
+require 'traversal.rb'
 
 # variables
 utils = Utils.new
@@ -42,3 +43,13 @@ end
 
 # output answer
 puts "The connected components of #{testFileName} are: s"
+
+traversal = Traversal.new(verticies[0].getId)
+traversal = utils.traverseTree(verticies, 0, traversal)
+
+pos = traversal.getNextPosInPath
+
+while pos != nil
+  puts pos
+  pos = traversal.getNextPosInPath
+end
