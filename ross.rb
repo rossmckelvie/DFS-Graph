@@ -31,25 +31,42 @@ while (line = inputFile.gets)
 
   count = count + 1
 end
+
 inputFile.close
 
-# output input data
-puts "edges: #{numEdges}"
-puts "verts: #{numVerts}"
 
-verticies.each do |vert|
-  vert.printAdjacent
-end
-
-# output answer
+# output heading, traverse tree and output
 puts "The connected components of #{testFileName} are: s"
 
-traversal = Traversal.new(verticies[0].getId)
-traversal = utils.traverseTree(verticies, 0, traversal)
+# get first root node
+root = utils.virginVertexExists(verticies, numVerts)
 
-pos = traversal.getNextPosInPath
+# loop until no verticies have been touched
+while root != -1
+  # blank output string
+  str = nil
+  
+  # start new traversal
+  traversal = Traversal.new(verticies[root].getId)
+  
+  # traverse the tree
+  traversal = utils.traverseTree(verticies, root, traversal)
 
-while pos != nil
-  puts pos
+  # loop thru traversed path
   pos = traversal.getNextPosInPath
+  while pos != nil
+    str = "#{str} #{pos}"
+    pos = traversal.getNextPosInPath
+    
+    # append comma if we aren't the last in path
+    if pos != nil
+      str = "#{str},"
+    end
+  end
+  
+  # output traversed path
+  puts str
+  
+  # get next node to start traversal
+  root = utils.virginVertexExists(verticies, numVerts)
 end

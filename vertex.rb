@@ -11,13 +11,9 @@ class Vertex
     @touched = false
   end
   
-  # add vertex
-  #    only if larger than this one
+  # add vertex and sort verticies by numer
   def add(vert)
-    if vert > @vertNum
-      @touches.push vert
-    end
-    
+    @touches.push vert
     @touches.sort!
   end
   
@@ -40,15 +36,5 @@ class Vertex
   # have i been touched before?
   def touched
     return @touched
-  end
-  
-  
-  # debug print
-  def printAdjacent
-    puts "Verticies that touch #{@vertNum}:"
-    
-    @touches.each do |touch|
-      puts "   #{touch}"
-    end
   end
 end

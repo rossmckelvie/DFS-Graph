@@ -40,4 +40,18 @@ class Utils
     
     return traversal
   end
+  
+  # checks to see if everything's been touched
+  def virginVertexExists(verticies, numVerts)
+    $i = 0
+    
+    while $i < numVerts
+      if !verticies[$i].touched
+        return $i
+      end
+      $i = $i + 1
+    end
+    
+    return -1
+  end
 end
