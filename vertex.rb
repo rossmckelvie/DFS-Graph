@@ -20,4 +20,8 @@ class Vertex
       puts "   #{touch}"
     end
   end
+  
+  def getId
+    return @vertNum
+  end
 end

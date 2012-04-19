@@ -1,40 +1,33 @@
 #!/usr/bin/ruby
 require 'vertex.rb'
+require 'utils.rb'
 
 # variables
+utils = Utils.new
 count = 0
-numEdges = 0
-numVerts = 0
-verticies = Array.new
 testFileName = ARGV[0]
 
+# open file handler
 inputFile = File.new(testFileName, "r")
 
-# loop thru lines of file
+# generate base data
+numEdges = utils.readNumberFromFile(inputFile)
+numVerts = utils.readNumberFromFile(inputFile)
+verticies = utils.buildVerticiesArray(numVerts)
+
+
+# loop thru lines of file to get verticies
+# build verticies array
 while (line = inputFile.gets)
-  # read data into correct place
-  if count == 0
-    numEdges = Integer(line)
-  elsif count == 1
-    numVerts = Integer(line)
-    $i = 0
-    while $i < numVerts
-      v = Vertex.new($i)
-      verticies.push v
-      $i = $i + 1
-    end
-  else
-    points = line.split
-    pos = count - 2
+  points = line.split
+  pos = count - 2
     
-    vert1 = Integer(points[0])
-    vert2 = Integer(points[1])
+  vert1 = Integer(points[0])
+  vert2 = Integer(points[1])
     
-    verticies[vert1 - 1].add(vert2)
-    verticies[vert2 - 1].add(vert1)
-  end
-  
-  # increase count
+  verticies[vert1 - 1].add(vert2)
+  verticies[vert2 - 1].add(vert1)
+
   count = count + 1
 end
 inputFile.close
