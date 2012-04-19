@@ -1,5 +1,4 @@
-require 'Vertex.rb'
-
+# author rossmckelvie
 class Utils
   # read a line from a file as a number
   def readNumberFromFile(fileHandler)
@@ -23,19 +22,19 @@ class Utils
   # Traverse a tree in DFS fashion
   def traverseTree(verticies, pos, traversal)
     verticies[pos].touch
-    pop = verticies[pos].popNext
+    nextVert = verticies[pos].getNext
     
-    while pop != nil
+    while nextVert != nil
       currentVal = verticies[pos].getId
       
-      val = pop - 1
+      val = nextVert - 1
       
       if verticies[val].touched == false
-        traversal.add(pop)
+        traversal.add(nextVert)
         traversal = traverseTree(verticies, val, traversal)
       end
       
-      pop = verticies[pos].popNext
+      nextVert = verticies[pos].getNext
     end
     
     return traversal

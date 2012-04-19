@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# author rossmckelvie
 require 'vertex.rb'
 require 'utils.rb'
 require 'traversal.rb'
@@ -20,18 +21,22 @@ verticies = utils.buildVerticiesArray(numVerts)
 # loop thru lines of file to get verticies
 # build verticies array
 while (line = inputFile.gets)
+  # format: number[space]number --> split into two for conversion
   points = line.split
-  pos = count - 2
-    
+  
+  # convert verticies from str to int
   vert1 = Integer(points[0])
   vert2 = Integer(points[1])
     
+  # add vertex connections
   verticies[vert1 - 1].add(vert2)
   verticies[vert2 - 1].add(vert1)
 
+  # increment counter
   count = count + 1
 end
 
+# close file handler
 inputFile.close
 
 

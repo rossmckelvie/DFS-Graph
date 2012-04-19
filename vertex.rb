@@ -1,5 +1,4 @@
-#!/usr/bin/ruby
-
+# author rossmckelvie
 class Vertex
   @vertNum
   @touches # FIFO list
@@ -23,9 +22,8 @@ class Vertex
   end
   
   # pulls first off of list
-  def popNext
-    pop = @touches.shift
-    return pop
+  def getNext
+    return @touches.shift
   end
   
   # tickle me

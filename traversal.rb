@@ -1,3 +1,4 @@
+# author rossmckelvie
 class Traversal
   @path
   
