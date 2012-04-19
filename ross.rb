@@ -36,7 +36,7 @@ inputFile.close
 
 
 # output heading, traverse tree and output
-puts "The connected components of #{testFileName} are: s"
+puts "The connected components of #{testFileName} are:"
 
 # get first root node
 root = utils.virginVertexExists(verticies, numVerts)
