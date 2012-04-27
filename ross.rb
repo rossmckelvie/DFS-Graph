@@ -15,22 +15,22 @@ inputFile = File.new(testFileName, "r")
 # generate base data
 numEdges = utils.readNumberFromFile(inputFile)
 numVerts = utils.readNumberFromFile(inputFile)
-verticies = utils.buildVerticiesArray(numVerts)
+vertices = utils.buildVerticesArray(numVerts)
 
 
-# loop thru lines of file to get verticies
-# build verticies array
+# loop thru lines of file to get vertices
+# build vertices array
 while (line = inputFile.gets)
   # format: number[space]number --> split into two for conversion
   points = line.split
   
-  # convert verticies from str to int
+  # convert vertices from str to int
   vert1 = Integer(points[0])
   vert2 = Integer(points[1])
     
   # add vertex connections
-  verticies[vert1 - 1].add(vert2)
-  verticies[vert2 - 1].add(vert1)
+  vertices[vert1 - 1].add(vert2)
+  vertices[vert2 - 1].add(vert1)
 
   # increment counter
   count = count + 1
@@ -44,18 +44,18 @@ inputFile.close
 puts "The connected components of #{testFileName} are:"
 
 # get first root node
-root = utils.virginVertexExists(verticies, numVerts)
+root = utils.virginVertexExists(vertices, numVerts)
 
-# loop until no verticies have been touched
+# loop until no vertices have been touched
 while root != -1
   # blank output string
   str = nil
   
   # start new traversal
-  traversal = Traversal.new(verticies[root].getId)
+  traversal = Traversal.new(vertices[root].getId)
   
   # traverse the tree
-  traversal = utils.traverseTree(verticies, root, traversal)
+  traversal = utils.traverseTree(vertices, root, traversal)
 
   # loop thru traversed path
   pos = traversal.getNextPosInPath
@@ -73,5 +73,5 @@ while root != -1
   puts str
   
   # get next node to start traversal
-  root = utils.virginVertexExists(verticies, numVerts)
+  root = utils.virginVertexExists(vertices, numVerts)
 end

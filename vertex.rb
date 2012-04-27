@@ -10,7 +10,7 @@ class Vertex
     @touched = false
   end
   
-  # add vertex and sort verticies by numer
+  # add vertex and sort vertices by numer
   def add(vert)
     @touches.push vert
     @touches.sort!
